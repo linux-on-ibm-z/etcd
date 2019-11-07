@@ -24,11 +24,12 @@ env:
  #   - TARGET=linux-amd64-integration-4-cpu
  #   - TARGET=linux-amd64-functional
  #   - TARGET=linux-amd64-unit
-    - TARGET=all-build
+ #   - TARGET=all-build
  #   - TARGET=linux-amd64-grpcproxy
  #   - TARGET=linux-amd64-coverage
  #   - TARGET=linux-amd64-fmt-unit-go-tip
  #   - TARGET=linux-386-unit
+    - TARGET=linux-s390x
 
 matrix:
   fast_finish: true
@@ -129,5 +130,8 @@ script:
         docker run --rm \
           --volume=`pwd`:/go/src/go.etcd.io/etcd gcr.io/etcd-development/etcd-test:go${TRAVIS_GO_VERSION} \
           /bin/bash -c "GOARCH=386 PASSES='unit' ./test"
+        ;;
+      linux-s390x)
+        GO_BUILD_FLAGS='-v' GOARCH=s390x ./build
         ;;
     esac
