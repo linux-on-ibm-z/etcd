@@ -26,8 +26,7 @@ env:
     - TARGET=linux-amd64-coverage
     - TARGET=linux-amd64-fmt-unit-go-tip
     - TARGET=linux-386-unit
-    - os: linux
-      arch: s390x
+    - arch: s390x
       TARGET=linux-s390x  
 
 matrix:
